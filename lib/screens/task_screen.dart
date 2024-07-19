@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todoey_app/widgets/task_list.dart';
+
+import 'add_task_screen.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
+
+  //Widget buildBottomSheet(BuildContext context) => Container();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,16 @@ class TaskScreen extends StatelessWidget {
           color: Colors.white,
           size: 30.0,
         ),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: SingleChildScrollView(child: AddTaskScreen()),
+                  ));
+        },
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
@@ -50,6 +64,7 @@ class TaskScreen extends StatelessWidget {
         ),
         Expanded(
           child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -57,6 +72,7 @@ class TaskScreen extends StatelessWidget {
                 topLeft: Radius.circular(30.0),
               ),
             ),
+            child: TaskList(),
           ),
         ),
       ]),
