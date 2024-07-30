@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todoey_app/model/task_data.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/task_screen.dart';
 
@@ -9,8 +11,11 @@ class Todoey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TaskScreen(),
+    return ChangeNotifierProvider(
+      create: (context) => TaskData(),
+      child: MaterialApp(
+        home: TaskScreen(),
+      ),
     );
   }
 }
